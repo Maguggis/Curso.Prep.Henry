@@ -10,7 +10,14 @@ function deObjetoAmatriz(objeto){
       C: 3
     }) ➞ [["D", 1], ["B", 2], ["C", 3]]*/
   //Escribe tu código aquí
-  let arreglo = Object.entries(objeto);
+  // let arreglo = Object.entries(objeto);
+  // return arreglo;
+  // forma facil xd
+
+  let arreglo = [];
+  for (clave in objeto){
+    arreglo.push([clave,objeto[clave]])
+  }
   return arreglo;
 }
 
@@ -20,15 +27,26 @@ function numberOfCharacters(string) {
   //en formato par clave-valor.
   //Ej: Recibe ---> "adsjfdsfsfjsdjfhacabcsbajda" || Devuelve ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 } 
   //Escribe tu código aquí:
+  // let objeto = {};
+  // let arreglo = string.split("");
+  // for (let i = 0; i < string.length; i++){
+  //   if (arreglo.indexOf(string[i]) > -1){           //    me hice un quilombaso creo,
+  //     objeto[string[i]] += 1;
+  //   } else {
+  //     objeto[string[i]] = 1;
+  //   }
+  // }
+
+  // return objeto;
   let objeto = {};
-  let n = 1;
-  let arreglo = string.split("");
-  arreglo.forEach(function(elemento){
-    if (arreglo.indexOf(elemento) > -1){
-      objeto.assign(elemento, n);
-      n++;
+  for(i=0;i<string.length;i++){
+    if (objeto.hasOwnProperty(string[i])){
+      objeto[string[i]] ++;
+    } else {
+      objeto[string[i]] = 1;
     }
-  })
+  }
+  return objeto;
 }
 
 
@@ -45,14 +63,24 @@ function capToFront(s) {
   //   } 
   // }
   // return s;
-  let string = s.forEach(function(e){
-    let n = 0;
-    if (e === e.toUpperCase()){
-      s[n] = e;
-      n++;
+  // let string = s.forEach(function(e){
+  //   let n = 0;
+  //   if (e === e.toUpperCase()){
+  //     s[n] = e;
+  //     n++;
+  //   }
+  // });
+  // return string;
+  let mayus = "";
+  let minus = "";
+  for (let i=0;i<s.length;i++){
+    if(s[i] === s[i].toUpperCase()){
+      mayus += s[i];
+    } else {
+      minus += s[i];
     }
-  });
-  return string;
+  }
+  return mayus + minus;
 }
 
 
@@ -62,11 +90,37 @@ function asAmirror(str) {
   //pero con cada una de sus palabras invertidas, como si fuera un espejo.
   //Ej: Recibe ---> "The Henry Challenge is close!" || Devuelve ---> "ehT yrneH egnellahC si !esolc"
   //Escribe tu código aquí:
+  // let stringInvertida = "";
+  // let fraseInvertida = "";
+  // for (var i = str.length - 1; i >= 0; i--){
+  //   if (str[i] === " "){
+  //     stringInvertida += " "; 
+  //   } else {
+  //   stringInvertida = fraseInvertida + str.charAt(i);
+  //   }
+  // }
+  // return stringInvertida;
+  let arreglo = str.split(" ");
   let stringInvertida = "";
-  for (var i = str.length - 1; i >= 0; i--){
-    stringInvertida = stringInvertida + str.charAt(i);
+  for (var i=0;i<arreglo.length;i++){
+    if(i !== arreglo.length-1){
+      for (var a=arreglo[i].length - 1;a>=0; a--){
+        stringInvertida += arreglo[i][a];
+      }
+      stringInvertida += " ";
+    } else {
+      for (var a=arreglo[i].length - 1;a>=0; a--){
+        stringInvertida += arreglo[i][a];
+      }
+    }
   }
   return stringInvertida;
+  /*    FORMA MAS FACIL 
+  var resultado = str.split(" ").map(function(el){
+    return el.split("").reverse().join("");
+  })
+  return resultado.join(" ");
+  */
 } 
 
 
@@ -75,14 +129,20 @@ function capicua(numero){
   //La misma debe retornar: "Es capicua" si el número se número que se lee igual de 
   //izquierda a derecha que de derecha a izquierda. Caso contrario retorna "No es capicua"
   //Escribe tu código aquí:
-  let num = numero.toString();
-  let numInvertido = "";
-  for (var i = num.length - 1; i >= 0; i--){
-    numInvertido = numInvertido + num.charAt(i);
-  }
-  if (num === numInvertido){
+  // let num = numero.toString();
+  // let numInvertido = "";
+  // for (var i = num.length - 1; i >= 0; i--){
+  //   numInvertido = numInvertido + num.charAt(i);
+  // }
+  // if (num === numInvertido){
+  //   return "Es capicua";
+  // } else{
+  //   return "No es capicua";
+  // }
+  // let string = numero.toString();
+  if (numero == numero.toString().split("").reverse().join("")){
     return "Es capicua";
-  } else{
+  } else {
     return "No es capicua";
   }
 }
@@ -92,13 +152,14 @@ function deleteAbc(cadena){
   //Define una función que elimine las letras "a", "b" y "c" de la cadena dada 
   //y devuelva la versión modificada o la misma cadena, en caso de contener dichas letras.
   //Escribe tu código aquí:
-  cadenaNueva = cadena.split("");
-  for (var i = 0; i < cadena.length; i++){
-    if (cadena[i] === "a" || cadena[i] === "b" || cadena[i] === "c" ){
-      cadenaNueva.splice(i,1,"");
-    }
-  }
-  return cadenaNueva.join("");
+  // cadenaNueva = cadena.split("");
+  // for (var i = 0; i < cadena.length; i++){
+  //   if (cadena[i] === "a" || cadena[i] === "b" || cadena[i] === "c" ){
+  //     cadenaNueva.splice(i,1,"");
+  //   }
+  // }
+  // return cadenaNueva.join("");
+  return cadena.replace("a","").replace("b","").replace("c",""); // XDXDXDXDXDXD
 }
 
 
@@ -106,19 +167,24 @@ function sortArray(arr) {
   //La función recibe una matriz de strings. Ordena la matriz en orden creciente de longitudes de cadena
   //Ej: Recibe ---> ["You", "are", "beautiful", "looking"] || Devuelve ---> [“You", "are", "looking", "beautiful"]
   //Escribe tu código aquí
-  arr.sort(function (a,b){
-    if (a.length > b.length){
-      return 1;
-    } 
-    if (a.length < b.length){
-      return -1;
-    } else {
-      return 0;
-    }
+//   arr.sort(function (a,b){
+//     if (a.length > b.length){
+//       return 1;
+//     } 
+//     if (a.length < b.length){
+//       return -1;
+//     } else {
+//       return 0;
+//     }
+//   });
+//   return arr;
+// }
+
+  arr.sort(function(a,b){
+    return a.length - b.length;
   });
   return arr;
 }
-
 
 function buscoInterseccion(arreglo1, arreglo2){
   //Existen dos arrays, cada uno con 5 números. A partir de ello, escribir una función que permita 
@@ -129,7 +195,7 @@ function buscoInterseccion(arreglo1, arreglo2){
   let arreglo3= [];
   arreglo1.forEach(function(elemento) {
     if (arreglo2.indexOf(elemento) > -1) {
-      arreglo3.push(elemento);  // existe pero en otra posición
+      arreglo3.push(elemento); 
     }
   });  
   return arreglo3;

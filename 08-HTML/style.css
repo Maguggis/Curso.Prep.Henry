@@ -1,0 +1,28 @@
+html {
+    color: red;
+    font-size: 12px;
+    border: red, 1px,
+}
+head{
+    background-color: aqua;
+    color: blanchedalmond;
+    font-size: large;
+}
+
+body {
+    background-color: blanchedalmond;
+    color: aqua;
+    font-size: medium;
+}
+
+p{
+    color: black;
+    font-size: large;
+}
+
+h1{
+
+}
+h2{
+
+}
